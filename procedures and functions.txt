@@ -1,0 +1,128 @@
+fibonnaci
+
+CREATE DEFINER=root@localhost PROCEDURE fibonacci(n int )
+BEGIN
+
+declare a int default 0;
+declare b int default 1;
+declare i int default 2;
+declare  temp int;
+
+select  a as fab union select b;
+
+while i<=n do
+ set temp =a+b;
+ set a=b;
+ set b=temp;
+ select temp as fab ;
+ 
+ set i=i+1;
+ end while;
+ 
+
+END
+----------------------------------------------------
+sum of even numbers
+
+CREATE DEFINER=root@localhost PROCEDURE print_sum_of_evens()
+BEGIN
+    DECLARE sum_result INT DEFAULT 0;
+    DECLARE i INT DEFAULT 2;
+
+    -- Calculate the sum of even numbers between 1 and 100
+    WHILE i <= 100 DO
+        SET sum_result = sum_result + i;
+        SET i = i + 2;
+    END WHILE;
+
+    -- Print the sum
+    SELECT sum_result AS 'Sum of Even Numbers between 1 and 100';
+END
+------------------------------------------------------
+Reverse
+
+CREATE DEFINER=root@localhost PROCEDURE reverse(inout input varchar(255))
+BEGIN
+declare R_string varchar(255);
+set R_string=reverse(input);
+set input=R_string;
+select input as 'reversed value';
+END
+--------------------------------------------------------
+Factorial
+CREATE DEFINER=root@localhost FUNCTION calculate_factorial(n INT) RETURNS int(11)
+BEGIN
+    DECLARE result INT DEFAULT 1;
+    DECLARE i INT DEFAULT 1;
+
+   
+    IF n < 0 THEN
+        RETURN NULL;  
+    END IF;
+
+   
+    WHILE i <= n DO
+        SET result = result * i;
+        SET i = i + 1;
+    END WHILE;
+
+    RETURN result;
+END
+-----------------------------------------------------------
+even or odd identify
+CREATE DEFINER=root@localhost FUNCTION even_and_odd(n int ) RETURNS int(11)
+BEGIN
+declare i int default 2;
+if n%2=0 then 
+return true;
+end if;
+
+return false;
+
+
+
+
+RETURN 1;
+END
+------------------------------------------------------------
+prime or not
+CREATE DEFINER=root@localhost FUNCTION is_prime(num INT) RETURNS tinyint(1)
+BEGIN
+    DECLARE i INT DEFAULT 2;
+
+    -- Check if the number is less than 2
+    IF num< 2 THEN
+        RETURN FALSE;  -- Numbers less than 2 are not prime
+    END IF;
+
+    -- Check for factors up to the square root of the number
+    WHILE i * i <= num DO
+        IF num % i = 0 THEN
+            RETURN FALSE;  -- Found a factor, the number is not prime
+        END IF;
+        SET i = i + 1;
+    END WHILE;
+
+    RETURN TRUE;  -- If no factors are found, the number is prime
+    return i;
+END
+---------------------------------------------------------------
+sum of first n numbers
+CREATE DEFINER=root@localhost FUNCTION sum_of_first_n(n int ) RETURNS int(11)
+BEGIN
+declare result  int default 0;
+declare i int default 1;
+
+if n<0 then 
+return null;
+end if ;
+
+while i<=n do 
+set result =result + i;
+set i=i+1;
+end while;
+return result;
+
+
+RETURN 1;
+END
